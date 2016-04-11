@@ -1,0 +1,235 @@
+\documentclass{homework}
+
+\title{Homework 2}
+
+\begin{document}
+
+\maketitle
+
+\begin{problem}{1}
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+\begin{align*}
+\det\bmat{1&-2&3&0\\4&0&1&2\\5&-1&2&1\\3&2&1&0}
+&= \det\bmat{0&1&2\\&-1&2&1\\&2&1&0} +
+  2\det\bmat{4&1&2\\5&2&1\\3&1&0} +
+  3\det\bmat{4&0&2\\5&-1&1\\3&2&0} \\
+&= (-\det\bmat{-1&1\\2&0} + 2\det\bmat{-1&2\\2&1}) \\
+&+ (8\det\bmat{2&1\\1&0} - 2\det\bmat{5&1\\3&0} + 4\det\bmat{5&2\\3&1}) \\
+&+ (12\det\bmat{-1&1\\2&0} + 6\det\bmat{5&-1\\3&2}) \\
+&= (2-10)+(-8+6-4)+(-24+78) \\
+&= -8-6+54 \\
+&= 40
+\end{align*}
+\end{problem}
+
+\begin{problem}{2}
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+Let
+\begin{align*}
+A &= \bmat{a_1&a_2\\a_3&a_4} \\
+B &= \bmat{b_1&b_2\\b_3&b_4}
+\end{align*}
+. We have
+\begin{align*}
+AB &= \bmat{a_1b_1 + a_2b_3 & \hdots \\ \hdots & a_3b_2 + a_4b_4} \\
+BA &= \bmat{b_1a_1 + b_2a_3 & \hdots \\ \hdots & b_3a_2 + b_4a_4}
+\end{align*}
+. Clearly,
+\begin{align*}
+\mathrm{tr}(AB) &=
+a_1b_1 + a_2b_3 + a_3b_2 + a_4b_4 \\
+&=
+b_1a_1 + b_2a_3 + b_3a_2 + b_4a_4 \\
+&=
+\mathrm{tr}(BA)
+\end{align*}
+\end{problem}
+
+\begin{problem}{3}
+\begin{enumerate}
+\item 
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+\begin{align*}
+\det[\hdots, \bvec{0}, \hdots]
+&= \det[\hdots, \bvec{v}, \hdots] - \det[\hdots, \bvec{v}, \hdots] \\
+&= 0
+\end{align*}
+, where $\bvec{v}$ denotes an arbitrary compatible vector. \QED
+
+\item 
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+Assume $A = [\hdots, \bvec{v}_i, \hdots, \bvec{v}_j, \hdots]$
+where $\bvec{v}_i = \bvec{v}_j$. Then,
+\begin{align*}
+\det[\hdots, \bvec{v}_i, \hdots, \bvec{v}_j, \hdots]
+&=- [\hdots, \bvec{v}_j, \hdots, \bvec{v}_i, \hdots] \\
+\det[\hdots, \bvec{v}_i, \hdots, \bvec{v}_j, \hdots]
+  + [\hdots, \bvec{v}_j, \hdots, \bvec{v}_i, \hdots]
+&= 0 \\
+2\det[\hdots, \bvec{v}_i, \hdots, \bvec{v}_j, \hdots]&= 0 \\
+\det[\hdots, \bvec{v}_i, \hdots, \bvec{v}_j, \hdots]&= 0
+\end{align*}
+\end{enumerate}
+. This completes the proof. \QED
+\end{problem}
+
+\begin{problem}{4}
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+First, one needs to show that matrix multiplication ``respects'' the three
+properties. For clarity, I use $M_i$ to denote a matrix $M$'s $i$th row and
+$M^i$ its $i$th column. Fix $A$.
+\begin{enumerate}
+\item Multilinearity.
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+$$AB = \bmat{A_1\cdot B^1 & \hdots & A_1\cdot B^i & \hdots & A_1\cdot B^n \\
+             \vdots       & \vdots & \vdots       & \vdots & \vdots \\
+             A_n\cdot B^1 & \hdots & A_n\cdot B^i & \hdots & A_n\cdot B^n}$$
+If $B^i = \alpha\bvec{u} + \beta\bvec{w}$, then since
+$$AB_{ji} = A_j\cdot(\alpha\bvec{u} + \beta\bvec{w})
+= A_j\cdot\alpha\bvec{u} + A_j\cdot\beta\bvec{w}$$
+, we have
+\begin{align*}
+f(B) &= \dfrac{1}{\det A} \det(AB) \\
+&= \dfrac{1}{\det A}\det
+\bmat{A_1\cdot B^1 & \hdots & A_1\cdot\alpha\bvec{u} & \hdots & A_1\cdot B^n \\
+      \vdots       & \vdots & \vdots       & \vdots & \vdots \\
+      A_n\cdot B^1 & \hdots & A_n\cdot\alpha\bvec{u} & \hdots & A_n\cdot B^n}\\
+&+ \dfrac{1}{\det A}\det
+\bmat{A_1\cdot B^1 & \hdots & A_1\cdot\beta\bvec{w} & \hdots & A_1\cdot B^n \\
+      \vdots       & \vdots & \vdots       & \vdots & \vdots \\
+      A_n\cdot B^1 & \hdots & A_n\cdot\beta\bvec{w} & \hdots & A_n\cdot B^n}\\
+&= f([B^1,\hdots,\alpha\bvec{u},\hdots,B^n])
+ + f([B^1,\hdots,\beta \bvec{w},\hdots,B^n])
+\end{align*}
+
+\item Antisymmetry.
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+\begin{align*}
+& f([\hdots,\bvec{u},\hdots,\bvec{w},\hdots]) + 
+  f([\hdots,\bvec{w},\hdots,\bvec{u},\hdots])
+\\ =&
+\dfrac{1}{\det A}\det[\hdots,A\bvec{u},\hdots,A\bvec{w},\hdots] \\ +&
+\dfrac{1}{\det A}\det[\hdots,A\bvec{w},\hdots,A\bvec{u},\hdots]
+\\ =& 0
+\end{align*}
+
+\item Normalization.
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+\begin{align*}
+f(I) &= \dfrac{\det(AI)}{\det A} \\
+     &= \dfrac{\det A}{\det A} \\
+     &= 1
+\end{align*}
+\end{enumerate}
+Therefore, $f$ has to be the determinant function, and
+$\det B = f(B) = \dfrac{\det(AB)}{\det A}$. \QED
+\end{problem}
+
+\begin{problem}{5}
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+\newcommand \comPerm[2]{\langle#1,#2\rangle}
+\newcommand \sgn{\mathrm{sgn}}
+For $\sigma_1 \in \mathrm{Perm}_n$ and $\sigma_2 \in \mathrm{Perm}_m$,
+denote $\comPerm{\sigma_1}{\sigma_2} \in \mathrm{Perm_{n+m}}$ as a point-wise
+composition of two permutations, where $\sigma_1$ works on the first $n$ entries
+and $\sigma_2$ works on the last $m$ entries. Formally speaking,
+$$\comPerm{\sigma_1}{\sigma_2} = \mathrm{shift}_n(\sigma_2) \circ \sigma_1$$
+where
+$$\mathrm{shift}_n(\sigma)(x) = \sigma(x - n) + n$$
+. Since $\mathrm{shift}_n$ preserves signature,
+$$\sgn(\comPerm{\sigma_1}{\sigma_2}) = \sgn(\sigma_1)\sgn(\sigma_2)$$
+From the determinant formula
+$$\det A = \sum_{\sigma \in \mathrm{Perm}_{n}}
+\sgn(\sigma)a_{1,\sigma(1)}\hdots a_{n,\sigma(n)}$$
+and the fact that the matrix in question is of form
+$$\bmat{A&|&C\\0&|&B}$$
+, we should note that if a permutation contributes to the sum, its first
+$n$ values must be less or equal than $n$---otherwise there will be a $0$
+that cancels everything---and its last $m$ values must range from $n + 1$
+to $n + m$. In other words, for every $\sigma \in \mathrm{Perm}_{n+m}$,
+$\sigma = \comPerm{\sigma_1}{\sigma_2}$. The formula can therefore be
+rewritten as
+\begin{align*}
+\det \bmat{A&|&C\\0&|&B} &=
+\sum_{\comPerm{\sigma_1}{\sigma_2} \in \mathrm{Perm}_{n+m}}
+\sgn(\sigma_1)\sgn(\sigma_2)
+A_{1,\sigma_1(1)}\hdots A_{n,\sigma_1(n)}
+B_{1,\sigma_1(1)}\hdots B_{m,\sigma_2(m)} \\
+&=
+\sum_{\sigma_1 \in \mathrm{Perm}_n}
+\sgn(\sigma_1)A_{1,\sigma_1(1)}\hdots A_{n,\sigma_1(n)}(
+\sum_{\sigma_2 \in \mathrm{Perm}_m}
+\sgn(\sigma_2)B_{1,\sigma_2(2)}\hdots B_{m,\sigma_2(m)}) \\
+&= \det B \sum_{\sigma_1 \in \mathrm{Perm}_n}
+\sgn(\sigma_1)A_{1,\sigma_1(1)}\hdots A_{n,\sigma_1(n)} \\
+&= \det A \det B
+\end{align*}
+. This completes the proof. \QED
+\end{problem}
+
+\begin{problem}{6}
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+\newcommand \sgn{\mathrm{sgn}}
+\begin{enumerate}
+\item $\sigma_1$ is the identity function. Since
+$\sgn(\sigma_1 \circ \sigma) = \sgn(\sigma_1)\sgn(\sigma_1)$, its signature
+has to be $1$.
+
+\item $\sigma_4, \sigma_5, \sigma_6$ are transpositions, so their signatures
+are $-1$.
+
+\item $\sigma_2 = \sigma_6 \circ \sigma_5$, so its signature is $1$.
+
+\item $\sigma_3 = \sigma_6 \circ \sigma_4$, so its signature is $1$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}{7}
+\begin{enumerate}
+\item
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+Use $\lambda_1, \hdots, \lambda_n$ to denote $A$'s diagonal entries.
+$$\det(tI - A) = (t-\lambda_1) \hdots (t-\lambda_n)$$
+$$\chi_A(X) = (X-\lambda_1 I) \hdots (X-\lambda_n I)$$
+Substitute $A$:
+\begin{align*}
+\chi_A(A) &= (A-\lambda_1 I) \hdots
+\bmat{\lambda_1\\&\ddots\\&&0\\&&&\lambda_n}
+\bmat{\lambda_1\\&\ddots\\&&\lambda_{n-1}\\&&&0} \\
+&= (A-\lambda_1 I) \hdots
+\bmat{\lambda_1\\&\ddots\\&&0\\&&&0} \\
+&= [0]
+\end{align*}
+
+\item
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+\begin{align*}
+\chi_{P^{-1}BP} &=
+\det(tI - P^{-1}BP) \\ &=
+\det(P^{-1}tIP - P^{-1}BP) \\ &=
+\det(P^{-1}(tI - B)P) \\ &=
+\det(tI - B) \\
+&= \chi_B
+\end{align*}
+
+Let $A$ be a diagonalizable matrix and $D = P^{-1}AP$ be a diagonal matrix.
+\begin{align*}
+\chi_A(A) = \chi_A(PDP^{-1}) &=
+(PDP^{-1})^n + c_1(PDP^{-1})^{n-1} + \hdots + c_n \\ &=
+P(D^n + c_1D^{n-1} + \hdots + c_n)P^{-1} \\ &=
+P\chi_B(D)P^{-1} \\ &=
+P\chi_D(D)P^{-1} \\ &= [0]
+\end{align*}
+
+\item
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+By theorem 4.8.24, there exists a sequence of diagonalizable matrices that
+converges to some arbitrary square matrix $A$. Also, $det$ is continuous. Let
+$$f(X) = \chi_X(X)$$
+. Denote the sequence as $\{A_i\}$, then $\{f(A_i)\}$ also converges. It
+follows that
+$$f(A) = \lim_{i \to \infty} f(A_i) = [0]$$
+. This completes the proof. \QED
+\end{enumerate}
+\end{problem}
+\end{document}
