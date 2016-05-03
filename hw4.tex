@@ -1,0 +1,281 @@
+\documentclass{homework}
+
+\title{Homework 4}
+
+\DeclareMathOperator{\img}{img}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\vol}{vol}
+
+\begin{document}
+
+\maketitle
+
+% 5.3.1
+\begin{problem}{1}
+\begin{enumerate}
+% 5.3.1.a
+\item
+Let $\gamma$ be the corresponding parametrization in the Cartesian coordinates:
+$$\gamma(t) = \bmat{r(t)\cos(\theta(t))\\r(t)\sin(\theta(t))}$$
+$$[\mathbf{D}\gamma(t)] = \bmat{
+r'(t)\cos(\theta(t))-r(t)\sin(\theta(t))\theta'(t)\\
+r'(t)\sin(\theta(t))+r(t)\cos(\theta(t))\theta'(t)
+}$$
+The length of the piece of the curve $l$ is
+\begin{align*}
+l  &=
+\int_a^b \sqrt{\det([\mathbf{D}\gamma(t)]^{\top}[\mathbf{D}\gamma(t)])}dt
+\\ &=
+\int_a^b \sqrt{
+(r'(t)\cos(\theta(t))-r(t)\sin(\theta(t))\theta'(t))^2+
+(r'(t)\sin(\theta(t))+r(t)\cos(\theta(t))\theta'(t))^2}dt
+\\ &=
+\int_a^b \sqrt{(r'(t))^2+(r(t)\theta'(t))^2}dt
+\end{align*}
+
+% 5.3.1.b
+\item
+Substitute $r(t)$ and $\theta(t)$, we obtain
+\begin{align*}
+l  &=
+\int_0^b \sqrt{\alpha^2e^{-2\alpha t}+e^{-2\alpha t}} dt
+\\ &=
+\sqrt{\alpha^2+1}\dfrac{1-e^{-\alpha b}-1}{\alpha}
+\end{align*}
+\begin{align*}
+\lim_{\alpha \to 0}
+\sqrt{\alpha^2+1}\dfrac{1-e^{-\alpha b}}{\alpha}
+&=
+\lim_{\alpha \to 0}
+\sqrt{\alpha^2+1}\dfrac{1-(1-\alpha b+\alpha^2b^2/2 - \hdots)}{\alpha} \\
+&=
+\lim_{\alpha \to 0}
+\sqrt{\alpha^2+1}(b+\alpha(-\alpha b^2/2 + \hdots)) \\
+&= b
+\end{align*}
+
+% 5.3.1.c
+\item
+Since $\theta(t) = t$ and every $2\pi$ change in $\theta(t)$ makes the spiral
+turn around the origin once, the spiral turns infinitely many times around the
+origin as $t \to \infty$.
+$$\lim_{t \to \infty}l = \dfrac{\sqrt{\alpha^2+1}}{\alpha}(1-e^{-\alpha t})
+= \dfrac{\sqrt{\alpha^2+1}}{\alpha}$$
+\end{enumerate}
+\end{problem}
+
+% 5.3.3
+\begin{problem}{2}
+\begin{enumerate}
+\item
+$$\gamma(t)=\pmat{
+r(t)\cos\theta(t)\cos\varphi(t)\\
+r(t)\sin\theta(t)\cos\varphi(t)\\
+r(t)\sin\varphi(t)}$$
+\begin{align*}
+l  &=
+\int_a^b \sqrt{\det([\mathbf{D}\gamma(t)]^{\top}[\mathbf{D}\gamma(t)])}dt
+\\ &=
+\int_a^b \sqrt{(r'(t))^2+(r(t)\varphi'(t))^2+(r(t)\cos\varphi(t)\theta'(t))^2}dt
+\end{align*}
+
+\item
+\begin{align*}
+l  &=
+\int_0^a \sqrt{(-\sin{t})^2+(\cos{t})^2+(\cos^2t\frac{1}{\cos^2t})^2}dt
+\\ &= \int_0^a \sqrt{2} dt
+\\ &= \sqrt{2}a
+\end{align*}
+\end{enumerate}
+\end{problem}
+
+% 5.3.5
+\begin{problem}{3}
+\begin{enumerate}
+\item
+$$\gamma(r\\\theta)=\pmat{2r\cos\theta\\3r\sin\theta\\r^2}$$
+\begin{align*}
+S  &=
+\int_0^{2\pi}\int_0^a \sqrt{\det([D\gamma]^{\top}[D\gamma])}drd\theta
+\\ &=
+\int_0^{2\pi}\int_0^a \sqrt{4r^2\sin^2\theta+9r^2\cos^2\theta+9}drd\theta
+\end{align*}
+
+\item
+Consider a function of $z$ that yields each horizontal slice of the region,
+given by the area formula for ellipse that is calculated in the early homework:
+$$f(z) = 2\sqrt{z}\cdot3\sqrt{z}\cdot\pi=6\pi z$$
+$$\vol{R}=\int_0^{a^2}f(z)dz=3\pi z|_0^{a^2}=3\pi a^4$$
+\end{enumerate}
+\end{problem}
+
+% 5.3.6
+\begin{problem}{4}
+Use the cylindrical coordinates for parametrization:
+$$\gamma\pmat{r\\\theta} = \pmat{r\cos\theta\\r\sin\theta\\r^2}$$
+$$[\mathbf{D}\gamma\bmat{r\\\theta}]=
+\bmat{\cos\theta&-r\sin\theta\\
+      \sin\theta& r\cos\theta\\
+      2r        & 0}$$
+$$[\mathbf{D}\gamma\bmat{r\\\theta}]^{\top}[\mathbf{D}\gamma\bmat{r\\\theta}]
+=\bmat{1+4r^2&0\\0&r^2}$$
+The integral can be rewritten as
+\begin{align*}
+\int_S(x^2+y^2+3z^2) |d^2\bvec{x}|
+&=
+\int_0^3 \int_0^{2\pi}(r^2+3r^4)\sqrt{\det{\bmat{1+4r^2&0\\0&r^2}}}drd\theta
+\\ &=
+\int_0^3 \int_0^{2\pi}(r^2+3r^4)\sqrt{r^2+4r^4}drd\theta
+\\ &=
+\int_0^3 2\pi(r^2+3r^4)\sqrt{r^2+4r^4}dr
+\end{align*}
+With some ugly substitutions, the result is
+$$(\dfrac{1}{105}+\dfrac{138787}{210}\sqrt{37})\pi$$
+\end{problem}
+
+% 5.3.8
+\begin{problem}{5}
+Using the same parameterization as in the last problem, we have
+\begin{align*}
+S  &=
+\int_0^1\int_0^{2\pi}\sqrt{r^2+4r^4}d\theta dr
+\\ &=
+\int_0^1 2\pi\sqrt{r^2+4r^4}dr
+\\ &= \dfrac{1}{6}(5\sqrt{5}-1)\pi
+\end{align*}
+\end{problem}
+
+% 5.3.13.a
+\begin{problem}{6}
+Let $\gamma$ be the horizontal radial projection:
+$$\gamma\bmat{\theta\\z}=\bmat{
+\sqrt{1-z^2}\cos\theta\\
+\sqrt{1-z^2}\sin\theta\\
+z}$$
+Then,
+\begin{align*}
+\vol{S_2} &= \int_{S_1} \sqrt{\det([\mathbf{D}\gamma]^{\top}[\mathbf{D}\gamma])}
+|d^2\bvec{x}| \\ &=
+\int_{S_1} 1|d^2\bvec{x}| \\ &= \vol{S_1}
+\end{align*}
+\end{problem}
+
+% 5.3.15
+\begin{problem}{7}
+\begin{enumerate}
+\item
+First, check if $\img(\gamma) \subset S^3$. Note the first three entry of the
+parametrization is the parametrization for $S^2$ in $\mathbb{R}^3$ multiplying
+$\cos\varphi$. Hence, the square sum of the four entries is
+$$\cos^2\psi + \sin^2\psi = 1$$
+
+Next, check if the domain of $\gamma$. As noted above, $\theta$ and $\varphi$
+``constitutes" the parametrization for $S^2$ with the appropriate domains.
+Therefore, if one fixes $\sin\psi$, for any $x_1,x_2,x_3$ such that
+$(x_1,x_2,x_3,\sin\psi)\in S^3$, there exists one and only one---except for
+certain sets of measure zero, which can be safely ignored---pair of
+$\theta$ and $\varphi$ such that
+$\gamma(\theta,\varphi,\psi)=(x_1,x_2,x_3,\sin\psi)$. Moreover,
+$f(\psi)=\sin\psi$ from $[-\pi/2,\pi/2]$ to $[-1,1]$ is indeed a bijective
+function.
+
+This completes the proof that $\gamma$ is a parametrization for $S^3$. \QED
+\item
+$$\det([\mathbf{D}\gamma]^{\top}[\mathbf{D}\gamma]) = \cos^4\psi\cos^2\varphi$$
+\begin{align*}
+\vol{S_3} &=
+\int_{-\pi/2}^{\pi/2}\int_{-\pi/2}^{\pi/2}\int_{0}^{2\pi}
+\sqrt{\cos^4\psi\cos^2\varphi}d\theta d\varphi d\psi \\ &= 2\pi^2
+\end{align*}
+\end{enumerate}
+\end{problem}
+
+% 6.1.3
+\begin{problem}{8}
+\begin{enumerate}
+\item $\det\bmat{1&1\\2&2}=0$
+\item $\det\bmat{1&-2\\0&1}+2\det\bmat{0&1\\1&0}=-1$
+\item $\det\bmat{2&2\\0&-3}=-6$
+\item $\det\bmat{1&-2&-2\\3&1&2\\3&1&2}=0$
+\end{enumerate}
+\end{problem}
+
+% 6.1.6
+\begin{problem}{9}
+Only a and f makes sense.
+\begin{enumerate}
+\item
+\begin{align*}
+dx_1 \land dx_2
+\pmat{\bmat{1\\0\\1},\bmat{2\\3\\1}}
+&＝ \det\pmat{1&0\\2&3} \\
+&= 3
+\end{align*}
+
+\item
+\begin{align*}
+dx_1 \land dx_2 \land dx_3
+\pmat{\bmat{1\\0\\3},\bmat{3\\7\\2},\bmat{2\\0\\1}}
+&＝ \det\pmat{1&3&2\\0&7&0\\3&2&1} \\
+&= -35
+\end{align*}
+\end{enumerate}
+\end{problem}
+
+% 6.1.8
+\begin{problem}{10}
+\begin{enumerate}
+\item $0$
+
+\item $2e^2$
+
+\item $4\det\bmat{3&-1&-1\\2&1&-1\\1&0&1} = 28$
+\end{enumerate}
+\end{problem}
+
+% 6.1.10
+\begin{problem}{11}
+$$\varphi = a_1dx_2\land dx_3 - a_2dx_1\land dx_3 + a_3dx_1\land d_x2$$
+\end{problem}
+
+% 6.1.11
+\begin{problem}{12}
+\begin{align*}
+\varphi\land\psi(\bvec{v}_1,\bvec{v}_2,\bvec{v}_3,\bvec{v}_4) &=
+\varphi(\bvec{v}_1,\bvec{v}_2)\psi(\bvec{v}_3,\bvec{v}_4)-
+\varphi(\bvec{v}_1,\bvec{v}_3)\psi(\bvec{v}_2,\bvec{v}_4)+
+\varphi(\bvec{v}_1,\bvec{v}_4)\psi(\bvec{v}_2,\bvec{v}_3)\\&+
+\varphi(\bvec{v}_2,\bvec{v}_3)\psi(\bvec{v}_1,\bvec{v}_4)-
+\varphi(\bvec{v}_2,\bvec{v}_4)\psi(\bvec{v}_1,\bvec{v}_3)+
+\varphi(\bvec{v}_3,\bvec{v}_4)\psi(\bvec{v}_1,\bvec{v}_2)
+\end{align*}
+\end{problem}
+
+% 6.1.12
+\begin{problem}{13}
+\begin{enumerate}
+\item Let $\varphi, \psi$ be two 1-forms. Then
+\begin{align*}
+(\varphi \land \psi)(\bvec{v}_1,\bvec{v}_2) &=
+\varphi(\bvec{v}_1)\psi(\bvec{v}_2)-
+\varphi(\bvec{v}_2)\psi(\bvec{v}_1) \\ &=
+-(\psi(\bvec{v}_1\varphi(\bvec{v}_2))
+-\psi(\bvec{v}_2)\varphi(\bvec{v}_1)) \\ &=
+-(\psi \land \varphi)(\bvec{v}_1,\bvec{v}_2)
+\end{align*}
+
+\item Let $\varphi$ and $\psi$ be 1-form and 2-form respectively. Then
+\begin{align*}
+(\varphi \land \psi)(\bvec{v}_1,\bvec{v}_2,\bvec{v}_3) &=
+\varphi(\bvec{v}_1)\psi(\bvec{v}_2,\bvec{v}_3)-
+\varphi(\bvec{v}_2)\psi(\bvec{v}_1,\bvec{v}_3)+
+\varphi(\bvec{v}_3)\psi(\bvec{v}_1,\bvec{v}_2)\\ &=
+\psi(\bvec{v}_1,\bvec{v}_2)\varphi(\bvec{v}_3)-
+\psi(\bvec{v}_1,\bvec{v}_3)\varphi(\bvec{v}_2)+
+\psi(\bvec{v}_2,\bvec{v}_3)\varphi(\bvec{v}_1)\\ &=
+(\psi \land \varphi)(\bvec{v}_1,\bvec{v}_2,\bvec{v}_3)
+\end{align*}
+\end{enumerate}
+\end{problem}
+
+\end{document}
