@@ -1,0 +1,225 @@
+\documentclass{homework}
+
+\title{Homework 3}
+
+\DeclareMathOperator{\img}{img}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\vol}{vol}
+
+\begin{document}
+
+\maketitle
+
+% 4.9.1
+\begin{problem}{1}
+$$\dfrac{\vol{T(A)}}{\vol{A}} = \det{T} = n!$$
+\end{problem}
+
+% 4.9.4
+\begin{problem}{2}
+Let $T_{n}(x)$ be the $n$-dimensional region
+$\{\bvec{x} \in \mathbb{R}^n |
+   x_i \geq 0\ \text{for all}\ i = 1,\hdots,n
+   \ \text{and}\ x_1 + \hdots + x_n \leq 1\}$.
+
+\textbf{Claim}.
+$$\vol{T_n(x)} = \frac{1}{n!}x^n$$
+
+\textbf{Proof}.
+For $n$ = 1, $\vol{T_1(x)} = \frac{1}{1!}x^1 = 1$.
+Otherwise, by induction,
+\begin{align*}
+\vol{T_n(x)}
+&= \int_0^x \vol{T_{n-1}(x)} \\
+&= \int_0^x \frac{1}{(n-1)!}x^(n-1) \\
+&= \frac{1}{n} \cdot \frac{1}{(n-1)!} x^n \\
+&= \frac{1}{n!} x^n
+\end{align*}
+This completes the proof. Substitute $x$ with 1, we obtain
+$$\vol{T_n(1)} = \frac{1}{n!}$$
+\end{problem}
+
+% 4.9.6
+\begin{problem}{3}
+\begin{enumerate}
+\item
+\begin{align*}
+\vol{T}
+&= \abs{\det{[\bvec{v}_1, \bvec{v}_2, \bvec{v}_3]}} \\
+&= \abs{-6\det{\bmat{-1&2\\-1&1}}+3\det{\bmat{-1&-1\\-1&3}}} \\
+&= |-6 - 12| \\
+&= 18
+\end{align*}
+\item
+\begin{align*}
+\vol{T}
+&= \abs{\det{[\bvec{v}_1, \bvec{v}_2, \bvec{v}_3, \bvec{v}_4]}} \\
+&= \abs{-\det{\bmat{1&1&1\\1&0&1\\1&1&0}}
+        +\det{\bmat{1&0&1\\1&1&1\\1&1&0}}
+        -\det{\bmat{1&0&1\\1&1&0\\1&1&1}}} \\
+&= \abs{-1-1-1} \\
+&= 3
+\end{align*}
+\item By row reduction,
+\begin{align*}
+\vol{T}
+&= \abs{\det{\bmat{4&3&2&1&0\\3&2&1&0&1\\2&1&0&1&2\\1&0&1&2&3\\0&1&2&3&4}}} \\
+&= 32
+\end{align*}
+\end{enumerate}
+\end{problem}
+
+% 4.10.4
+\begin{problem}{4}
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+Note the similarity between this problem and example 4.10.9. Let
+$\gamma : [0, 1] \times [0, 2\pi] \times [-1, 1] \to \mathbb{R}^3$ be
+$$\gamma \pmat{r\\\theta\\z} = \pmat{
+r(1-z)\cos\theta\\
+r(1+z)\sin\theta\\
+z^{1/3}}$$
+whose Jacobian matrix's determinant is
+$$\dfrac{1}{3}rz^{-2/3}(1-z^2)$$
+The integral is
+\begin{align*}
+\vol{T}
+&= \int_0^{2\pi}\int_0^1\int_{-1}^1 \dfrac{1}{3}rz^{-2/3}(1-z^2) dzdrd\theta
+\\
+&= \int_0^{2\pi}\int_0^1 \dfrac{1}{3}r(\int_{-1}^1 z^{-2/3}(1-z^2)dz)drd\theta
+\\
+&= \int_0^{2\pi}\int_0^1 \dfrac{1}{3}r
+(\dfrac{3}{7}z^{1/3}(7-z^2))|^1_{-1}
+drd\theta
+\\
+&= \int_0^{2\pi}\int_0^1 \dfrac{12}{7}r drd\theta \\
+&= \int_0^{2\pi} (\dfrac{6}{7}r^2)|_0^1 d\theta \\
+&= \int_0^{2\pi} \dfrac{6}{7} d\theta \\
+&= \dfrac{12}{7} \pi
+\end{align*}
+\end{problem}
+
+% 4.10.5
+\begin{problem}{5}
+\begin{enumerate}
+\item
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+Let $\gamma : [0, 1] \times [0, 2\pi]$ be
+$$\gamma \pmat{r\\\theta} = \pmat{ar\cos\theta\\br\sin\theta}$$
+whose Jacobian matrix'sdeterminant is
+$$abr$$
+The integral is
+\begin{align*}
+\vol{T}
+&= \int_0^{2\pi}\int_0^1 abr drd\theta \\
+&= ab\pi r^2
+\end{align*}
+\item
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+Let $\gamma : [0, 1] \times [0, 2\pi] \times [-\pi/2, \pi/2]$ be
+$$\gamma \pmat{r\\\theta\\\varphi} = \pmat{
+ar\cos\theta\cos\varphi \\
+br\sin\theta\cos\varphi \\
+cr\sin\varphi}$$
+whose Jacobian matrix's determinant is
+$$abcr^2\cos\varphi$$
+The integral is
+\begin{align*}
+\vol{T}
+&= \int_{-\pi/2}^{\pi/2}\int_0^{2\pi}\int_0^1 abcr^2\cos\varphi drd\theta d\varphi \\
+&= \int_{-\pi/2}^{\pi/2}\dfrac{2\pi}{3}abcr^3\cos\varphi d\varphi \\
+&= \dfrac{4\pi}{3} abcr^3
+\end{align*}
+\end{enumerate}
+\end{problem}
+
+% 4.10.8
+\begin{problem}{6}
+\begin{enumerate}
+\item See the last page of my submission.
+\item
+Consider the following equations
+$$\left\{
+\begin{aligned}
+y&=kx \\
+y&=\dfrac{c}{x}
+\end{aligned}
+\right.$$
+and use $k, c$ to represent $x, y$. Let $\gamma : [1,4] \times [1,2]$ be
+$$\gamma \pmat{k\\c} = \pmat{c^{1/2}k^{-1/2}\\c^{1/2}k^{1/2}}$$
+whose Jacobian matrix's determinant is
+$$-\dfrac{1}{2k}$$
+The integral is
+\begin{align*}
+\vol{T}
+&= \int_1^4\int_1^2 \dfrac{c^2}{2k} dcdk \\
+&= \int_1^4 \dfrac{c^3}{6k}|_1^2 dk \\
+&= \dfrac{6}{7} \int_1^4 \dfrac{1}{k} dk \\
+&= \dfrac{6}{7} \ln 4
+\end{align*}
+\end{enumerate}
+\end{problem}
+
+% 4.10.12
+\begin{problem}{7}
+The integral is over a 3-dimensional ball of radius $2$. Use the spherical
+coordinates. Let $\gamma : [0, 2] \times [0, 2\pi] \times [-\pi/2, \pi/2]$ be
+$$\gamma \pmat{r\\\theta\\\varphi} = \pmat{
+r\cos\theta\cos\varphi \\
+r\sin\theta\cos\varphi \\
+r\sin\varphi}$$
+whose Jacobian matrix's determinant is
+$$r^2\cos\varphi$$
+The integral is
+\begin{align*}
+\vol{T}
+&= \int_{-\pi/2}^{\pi/2}\int_0^{2\pi}\int_0^2
+r^{3/2}\cdot r^2\cos\varphi drd\theta d\varphi \\
+&= \int_{-\pi/2}^{\pi/2}\int_0^{2\pi} \dfrac{32}{9}\sqrt{2} d\theta d\varphi \\
+&= \dfrac{64}{9}\sqrt{2}\pi^2
+\end{align*}
+\end{problem}
+
+% 4.10.17
+\begin{problem}{8}
+\begin{enumerate}
+\item See the last page of my submission.
+\item Since $\Phi$ is invertible (with some simple substitutions):
+$$\left\{\begin{aligned}
+v = \ln\dfrac{y}{e^x+1} \\
+u = \ln\dfrac{y}{e^{-x}+1}
+\end{aligned}\right.$$
+it is necessarily injective. \QED
+\item
+The determinant of $\Phi$'s Jacobian matrix is
+$$e^u+e^v$$
+Therefore,
+\begin{align*}
+\int_A y\abs{dxdy}
+&= \int_0^a\int_0^a (e^{2u}+2e^ue^v+e^2v) dudv \\
+&= a(e^{2a}-1) + 2(e^a-1)^2
+\end{align*}
+\end{enumerate}
+\end{problem}
+
+% 5.1.1
+\begin{problem}{9}
+\begin{align*}
+\vol P &= \sqrt{\det(
+\bmat{1&0&1&1\\0&2&1&1\\1&1&0&2}
+\bmat{1&0&1\\0&2&1\\1&1&0\\1&1&2})} \\
+&= \sqrt{\det{\bmat{3&2&3\\2&6&4\\3&4&6}}} \\
+&= \sqrt{30}
+\end{align*}
+\end{problem}
+
+% 5.1.3
+\begin{problem}{10}
+%%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%% %%%%|
+Let $T = [\bvec{v}_1, \hdots, \bvec{v}_k]$. Since these vectors are linearly
+dependent, $\rank{T} < k$. Therefore, $\rank(T^\top T) \leq \rank{T} < k$.
+\footnote{This has been prove in 31AH: $\img(T^\top T) \subset \img T^\top$,
+and $\rank T^\top = \rank T$.}
+Consequently, $T^\top T$ is not invertible, $\det(T^\top T) = 0$, and
+$\vol = \sqrt{\det(T^\top T)} = 0$. \QED
+\end{problem}
+\end{document}

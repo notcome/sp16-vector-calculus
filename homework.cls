@@ -2,9 +2,10 @@
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
-\RequirePackage{a4wide}
+\RequirePackage[letterpaper,margin=1in]{geometry}
 \RequirePackage{mathtools}
 \RequirePackage{mathpazo}
+\RequirePackage{parskip}
 
 \author{Minsheng Liu}
 
@@ -19,3 +20,5 @@
 
 \newcommand \bvec[1]{\vec{\mathbf{#1}}}
 \newcommand \bpnt[1]{\mathbf{#1}}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
