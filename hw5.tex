@@ -1,0 +1,258 @@
+\documentclass{homework}
+
+\title{Homework 5}
+
+\DeclareMathOperator{\sgn}{sgn}
+
+\begin{document}
+
+\maketitle
+
+\begin{problem}{1}
+  \begin{enumerate}
+    \item
+    \begin{align*}
+      \int_{[\gamma(I)]} x\ dy+y\ dz &=
+      \int_{-1}^{1} x\ dy+y\ dz
+        \left(
+          P_{\pmat{\sin t \\  \cos t \\ t}}
+             \bmat{\cos t \\ -\sin t \\ 1}
+        \right) dt \\ &=
+      \int_{-1}^{1} (-\sin^2 t + \cos t\ dt) \\ &=
+      \int_{-1}^{1}
+        \left(
+        \dfrac{1}{2}(\cos t - 1) + \cos t\ dt
+        \right)
+        \\ &=
+      \dfrac{1}{2} \sin 2 + 2 \sin 1 - 1
+    \end{align*}
+    \item
+    \begin{align*} &
+      \int_{[\gamma(U)]} x_1\ dx_2 \land dx_3 + x_2\ dx_3 \land dx_4 \\ =&
+      \int_U x_1\ dx_2 \land dx_3 + x_2\ dx_3
+        \left(
+        P_{\pmat{uv \\ u^2+v^2 \\ u-v \\ \ln{u+v+1}}}
+          \left(
+            \bmat{v \\ 2u \\ 1  \\ 1/(u+v+1)},
+            \bmat{u \\ 2v \\ -1 \\ 1/(u+v+1)}
+          \right) du\ dv
+        \right)
+        \\ =&
+      \int_U \left( -uv(2u+2v) + 2\dfrac{u^2+v^2}{1+u+v} \right) du\ dv \\ =&
+      \int_0^2
+        \left( \int_0^{2-u}
+          \left( -uv(2u+2v) + 2\dfrac{u^2+v^2}{1+u+v} \right)
+        dv \right)
+        du
+        \\ =&
+      -\dfrac{4}{3} \ln 3 + \dfrac{64}{45}
+    \end{align*}
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}{2}
+  \begin{enumerate}
+    \item
+    \begin{align*}
+      \int_{[\gamma(U)]} x\ dy\land dz &=
+      \int_U x\ dy\land dz
+        \left(
+        P_{\pmat{u^2 \\ u + v \\ v^3}}
+          \left(
+            \bmat{2u \\ 1 \\ 0},
+            \bmat{0  \\ 1 \\ 3v^2}
+          \right)
+        \right) du\ dv
+        \\ &=
+      \int_U u^2 \det \bmat{1 & 1 \\ 0 & 3v^2} du\ dv \\ &=
+      \int_{-1}^1
+        \left( \int_{-1}^1 u^2 3v^2\ dv \right)
+        du \\ &=
+      \int_{-1}^1 2u^2\ du \\ &=
+      \dfrac{4}{3}
+    \end{align*}
+    \item
+    \begin{align*} &
+      \int_{[\gamma(U)]} x_2\ dx_1 \land dx_3 \land dx_4 \\ =&
+      \int_U x_2\ dx_1 \land dx_3 \land dx_4
+        \left( P_{\pmat{uv \\ u^2+w^2 \\ u-v \\ w}}
+          \left(
+            \bmat{v \\ 2u \\  1 \\ 0},
+            \bmat{u \\  0 \\ -1 \\ 0},
+            \bmat{0 \\ 2w \\  0 \\ 1}
+          \right)
+        \right) du\ dv\ dw \\ =&
+      \int_U (u^2+w^2)
+        \det \bmat{v & u & 0 \\ 1 & -1 & 0 \\ 0 & 0 & 1}
+        du\ dv\ dw \\ =&
+      \int_U -(u^2+w^2)(u+v) du\ dv\ dw \\ =&
+      \int_0^3 \left(
+        \int_0^{3-u} \left(
+          \int_0^{3-u-v} -(u^2+w^2)(u+v)\ dw
+        \right) dv
+      \right) du \\ =&
+      -\dfrac{243}{20}
+    \end{align*}
+    Note that both 6.2.1 (b) and 6.2.2 (b) is computed with the aid of
+    Mathematica, as suggested in the textbook.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}{3}
+  \begin{enumerate}
+    \item
+    \begin{align*} &
+      \int_{[\gamma(U)]} (x_1+x_4) dx_2 \land dx_3 \\ =&
+      \int_U (x_1+x_4) dx_2 \land dx_3
+        \left( P_{\pmat{e^u \\ e^{-v} \\ \cos u \\ \sin v}}
+          \left(
+            \bmat{e^u \\ 0       \\ -\sin u \\      0},
+            \bmat{0   \\ -e^{-v} \\ 0       \\ \cos v}
+          \right)
+        \right) du\ dv \\ =&
+      \int_U -(e^u + \sin v)(e^{-v} \sin u) du\ dv \\ =&
+      \int_0^1 \left(
+        \int_{-u}^u -(e^u + \sin v)(e^{-v} \sin u) dv
+      \right) du
+    \end{align*}
+    \item
+    \begin{align*}
+      \int_{[\gamma(U)]} x_2x_4\ dx_1 \land dx_3 \land dx_4 &=
+      \int_U (u-v)(w-v) \det
+        \bmat{1 & 1 & 0 \\ 0 & 1 & 1 \\ 0 & -1 & 1} du\ dv\ dw \\ &=
+      \int_U 2(u-v)(w-v) du\ dv\ dw \\ &=
+      \int_0^1 \left(
+        \int_{-(1-w)}^{1-w} \left(
+          \int_{-\sqrt{(w-1)^2-v^2}}^{\sqrt{(w-1)^2-v^2}}
+            2(u-v)(w-v) du
+        \right) dv
+      \right) dw
+    \end{align*}
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}{4}
+  $\bmat{1 \\ 1}$ is not tangent to $x + y = 0$, so it does not define an
+  orientation for that line. It does orient $x - y = 0$, since the field is
+  tangent to the line and does not vanish.
+\end{problem}
+
+\begin{problem}{5}
+  Let $\bvec{f} = \bvec{v}$ be a constant vector field. Let
+  $$\mathbf{F} \pmat{x \\ y \\ z} = x^2 + y^2 + z^2 - 1$$
+  $\mathbf{F}^{-1}(\bvec{0})$ gives the unit sphere. Note that
+  $$[\mathbf{DF}(\bvec{x})]\bvec{v} = 2\bvec{x} \cdot \bvec{v}$$
+  could be $0$ when $\bvec{x}$ is orthogonal to $\bvec{v}$. In other word,
+  $\bvec{v}$ will be in the tangent space of the unit sphere at some point.
+  Hence, the constant vector field $\bvec{f}$ cannot be transversal.
+  Consequently, no constant vector field can orient the unit sphere. \QED
+\end{problem}
+
+\begin{problem}{6}
+  Let
+    $$\mathbf{F} \pmat{x \\ y} = x + x^2 + y^2 - 2$$
+    $$[\mathbf{DF}\pmat{x \\ y}] = \bmat{2x + 1 & 2y}$$
+  The vector field
+    $$\bvec{n} \pmat{x \\ y} = \bmat{x \\ y}$$
+  orients the curve given by $\mathbf{F}^{-1} = 0$, since
+    $$[\mathbf{DF} \pmat{x \\ y}]
+          \bvec{n} \pmat{x \\ y}
+      = x + 2x^2 + 2y^2 = 2 + x^2 + y^2 > 0$$
+  shows that $\bvec{n}$ is transversal to the curve.
+\end{problem}
+
+\begin{problem}{7}
+  All these constant vectors are not in the plane $P$, so they are transversal
+  to $P$ and each defines an orientation. Pick a simple basis
+  $$\bmat{1 \\ -1 \\ 0}, \bmat{1 \\ 0 \\ -1}$$
+  The four orientations give $1, 1, -1, -1$ for this basis, respectively.
+  Hence the first two define the same orientation, while the rest two define the
+  other.
+\end{problem}
+
+\begin{problem}{8}
+  Let
+    $$\mathbf{F} \pmat{x \\ y \\ z} = x^2 + y^3 + z - 1$$
+    $$[\mathbf{DF}\pmat{x \\ y \\ z}] = \bmat{2x & 3y^2 & 1}$$
+  The vector field
+    $$\bvec{n} \pmat{x \\ y \\ z} = \bmat{1/2x \\ 1/3y \\ 1}$$
+  orients the surface given by $\mathbf{F}^{-1} = 0$, since
+  $$[\mathbf{DF} \pmat{x \\ y \\ z}]
+        \bvec{n} \pmat{x \\ y \\ z}
+    = x^2 + y^3 + z = 1$$
+  shows that $\bvec{n}$ is transversal to the curve.
+\end{problem}
+
+\begin{problem}{9}
+  $$[P_{\{\bvec{w}\} \to \{\bvec{v}\}]} = \bmat{2 & 1 \\ -3 & 2}$$
+  $$\det [P_{\{\bvec{w}\} \to \{\bvec{v}\}]} = 7 > 0$$
+  Therefore, these two bases give the same orientation. \QED
+\end{problem}
+
+\begin{problem}{10}
+  \begin{enumerate}
+    \item
+    The change of basis matrix between the first and the second one is
+    $\bmat{-1 & -1 \\  0 &  1}$, whose determinant is $-1$.
+    The change of basis matrix between the first and the third one is
+    $\bmat{ 1 &  0 \\ -1 & -1}$, whose determinant is $-1$.
+    Therefore, the first one gives a different orientation than the other two.
+    \item
+    Let
+    $$\bvec{v} = \bmat{1 \\ 1 \\ 1}$$
+    , which is a noraml vector to $P$.
+    $$\sgn \det \bmat{1 & 1 & 0 \\ 1 & 0 & 1 \\ 1 & -1 & -1} = \sgn 1 = 1$$
+    That is, under $\bvec{v}$ the basis is direct.
+    $\bvec{v}$ satisfies the requirement.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}{11}
+  \begin{enumerate}
+    \item
+    Let
+      $$\mathbf{F} \pmat{x_1 \\ x_2 \\ x_3 \\ x_4} = \pmat{
+        x_1^2 - x_2^2 - x_3 \\
+        2x_1x_2 - x_4
+      }$$
+      $$[\mathbf{DF}\pmat{x_1 \\ x_2 \\ x_3 \\ x_4}] = \bmat{
+        2x_1 & -2x_2 & -1 &  0 \\
+        2x_2 &  2x_1 &  0 & -1
+      }$$
+    The derivative is onto, so $S$ is indeed a surface. \QED
+    \item
+    $\{\bvec{e}_1, \bvec{e}_2\}$ forms a basis for $T_{\bvec{0}}S$.
+    Check if this basis is ordered:
+    $$\sgn \det
+      \bmat{0 & 0 & 1 & 0 \\
+            0 & 0 & 0 & 1 \\
+           -1 & 0 & 0 & 0 \\
+          0 & -1 & 0 & 0} = 1
+    $$
+    It is.
+  \end{enumerate}
+\end{problem}
+
+\begin{problem}{12}
+  First, we find an ordered basis for the tangent space to M. Let
+  $$\mathbf{F} \pmat{x_1 \\ x_2 \\ x_3 \\ x_4} = x_1^2 + x_2^2 + x_3^2 - x_4$$
+  $$\mathbf{c} = \pmat{1 \\ 0 \\ 0 \\ 1}$$
+  $$[\mathbf{DF}(\mathbf{c})] = \bmat{2 \\ 0 \\ 0 \\ -1}$$
+  Hence, any vector $\bvec{z} \in \ker [\mathbf{DF}(\mathbf{c})]$ must satisfy
+  $$2z_1 = z_4$$
+  Naturally, a basis for $T_{\mathbf{c}}M$ is
+  $$\pmat{2 \\ 0 \\ 0 \\ 1},
+    \pmat{0 \\ 1 \\ 0 \\ 0},
+    \pmat{0 \\ 0 \\ 1 \\ 0}
+  $$
+  Next, check if this basis is ordered:
+  $$\sgn \det
+    \bmat{2 & 2 & 0 & 0 \\
+          0 & 0 & 1 & 0 \\
+          0 & 0 & 0 & 1 \\
+         -1 & 1 & 0 & 0} = \sgn 4 = 1
+  $$
+  It is.
+\end{problem}
+
+\end{document}
