@@ -1,0 +1,231 @@
+\documentclass{homework}
+
+\title{Homework 6}
+
+\DeclareMathOperator{\sgn}{sgn}
+\allowdisplaybreaks
+
+\begin{document}
+\maketitle
+
+% 6.4.1
+\begin{problem}{1}
+  $$\vec{\nabla} f\pmat{x \\ y \\ z} = \bmat{2x \\ 2y \\ -2z}$$
+  $$[\mathbf{D} \gamma] = \bmat{
+    \cos\theta & -r\sin\theta \\
+    \sin\theta &  r\cos\theta \\
+    1          &  0
+  }$$
+  \begin{align*}
+    \det [\vec{\nabla} f \cdot \gamma, \mathbf{D}_1 \gamma, \mathbf{D}_2 \gamma]
+    &= \det \bmat{
+      2r\cos\theta & \cos\theta & -r\sin\theta \\
+      2r\sin\theta & \sin\theta &  r\cos\theta \\
+      -2r          & 1          &  0
+    } \\
+    &= -4r^2 < 0
+  \end{align*}
+  Hence $\gamma$ does not preserve orientation.
+\end{problem}
+
+% 6.4.4
+\begin{problem}{2}
+  Let $U = [0, 1] \times [0, 1] \times [0, 1]$.
+  Let $\gamma: U \to S$ be
+  $$\gamma\pmat{x_1 \\ x_2 \\ x_3} = \pmat{x_1 \\ x_2 \\ x_3 \\ x_1x_2x_3}$$
+  \begin{align*} &
+    \int_S x_3\ dx_1 \land dx_2 \land dx_4 |d^3x| \\ =&
+    \int_U
+      \sgn dx_1 \land dx_2 \land dx_3 \cdot
+      x_3\ dx_1 \land dx_2 \land dx_4 \left(
+      P_{\pmat{u_1 \\ u_2 \\ u_3 \\ u_1u_2u_3}}
+        \bmat{
+          1      & 0      & 0 \\
+          0      & 1      & 0 \\
+          0      & 0      & 1 \\
+          u_2u_3 & u_1u_3 & u_1u_2
+        }\right)
+      |d^3u| \\ =&
+    \int_U u_3\det\bmat{
+      1      & 0      & 0 \\
+      0      & 1      & 0 \\
+      u_2u_3 & u_1u_3 & u_1u_2}
+      |d^3u| \\ =&
+    \int_U u_3(u_1u_2 - u_1u_3) |d^3u| \\ =&
+    \int_0^1 \left(
+      \int_0^1 \left(
+        \int_0^1 u_3(u_2-u_3)u_1\ du_1
+        \right) du_2
+      \right) du_3 \\ =&
+    \dfrac{1}{2}
+    \int_0^1 \left( \int_0^1 u_3(u_2 - u_3)\ du_2 \right) du_3 \\ =&
+    \dfrac{1}{2} \left(
+      \int_0^1\int_0^1 u_3u_2\ du_2\ du_3 -
+      \int_0^1 u_3^2\ du_3
+    \right) \\ =&
+    \dfrac{1}{2}(\dfrac{1}{4} - \dfrac{1}{3}) \\ =&
+    -\dfrac{1}{24}
+  \end{align*}
+\end{problem}
+
+% 6.5.4
+\begin{problem}{3}
+  Note
+  $$\bvec{F} \times \bvec{G} = \bmat{
+    F_2G_3 - F_3G_2 \\
+    F_3G_1 - F_1G_3 \\
+    F_1G_2 - G_2F_1
+  }$$
+  Therefore,
+  \begin{align*}
+    \Phi_{\bvec{F} \times \bvec{G}} &=
+    F_2\ dy\land G_3\ dz - F_3\ dz\land G_2\ dy \\ &-
+    F_3\ dx\land G_1\ dz + F_1\ dz\land G_3\ dx \\ &+
+    F_1\ dx\land G_2\ dy - G_2\ dx\land F_1\ dy \\ &+
+    0\ dx \land dx + 0\ dy \land dy + 0\ dz \land dz  \\ &=
+    \sum_{i=1}^3\sum_{j=1}^3 F_i\ d_i\land G_j\ d_j \\ &=
+    W_{\bvec{F}} \land W_{\bvec{G}}
+  \end{align*}
+  \QED
+\end{problem}
+
+% 6.5.5
+\begin{problem}{4}
+  \begin{align*}
+    W_{\bvec{F}} \land \Phi_{\bvec{G}} &=
+    (F_1\ dx + F_2\ dy + F_3\ dz) \land
+    (G_1\ dy \land dz + G_2\ dz \land dx + G_3\ dx \land dy) \\ &=
+    (F_1G_1 + F_2G_2 + F_3G_3) dx \land dy \land dz \\ &=
+    \bvec{F} \cdot \bvec{G}\ dx \land dy \land dz \\ &=
+    M_{\bvec{F} \cdot \bvec{G}}
+  \end{align*}
+  Since dot product is commutative,
+  $ M_{\bvec{F} \cdot \bvec{G}}
+  = M_{\bvec{G} \cdot \bvec{F}}
+  = W_{\bvec{G}} \land \Phi_{\bvec{F}}$ \QED
+\end{problem}
+
+% 6.5.6
+\begin{problem}{5}
+  \begin{align*}
+    W_{\bvec{F}}(P_{\bpnt{a}}(\bvec{u})) &=
+    F(\bpnt{a}) \cdot \bvec{u} \\ &=
+    \bmat{0 \\ -1 \\ -2} \cdot \bmat{1 \\ -1 \\ 1} \\ &=
+    1 - 2 = -1
+  \end{align*}
+\end{problem}
+
+% 6.5.9
+\begin{problem}{6}
+  \begin{enumerate}
+    \item
+      One spanned by $\bmat{1 \\ 1 \\ 0}, \bmat{0 \\ 0 \\ 1}$, which evaluates
+      to $\det\bmat{1 & 0 \\ 0 & 1} + \det\bmat{1 & 0 \\ 0 & 1} = 2$.
+    \item
+      Positive: $\pmat{0 \\ 0 \\ -1}$. This evaluates to
+      $-(-1) \det\bmat{1 & 0 \\ 0 & 1} = 1$.
+
+      Negative: $\pmat{0 \\ 0 \\ 1}$. This evaluates to
+      $-1 \det\bmat{1 & 0 \\ 0 & 1} = -1$.
+  \end{enumerate}
+\end{problem}
+
+% 6.5.13
+\begin{problem}{7}
+  \textbf{Multilinearity}.
+  Since the determinant is linear as a function of each column $\bvec{v}_i$,
+  $\Phi_{\bvec{F}(\bpnt{x})}$ also is.
+
+  \textbf{Antisymmetry}.
+  Switching any two columns of $\Phi_{\bvec{F}(\bpnt{x})}$ will switch
+  the corresponding $\bvec{v}_i$ and $\bvec{v}_j$ of the determinant,
+  which will change the sign due to the antisymmetry of determinant. \QED
+\end{problem}
+
+% 6.5.15
+\begin{problem}{8}
+  $$\bvec{F}(\bpnt{x}) = \bmat{1 \\ 0 \\ -1}$$
+  $$\bvec{f}(\bpnt{x}) = -2$$
+  \begin{enumerate}
+    \item
+    $$W_{\bvec{F}}(P_{\bpnt{x}}(\bvec{v}_1))
+    = \bmat{1 \\ 0 \\ -1} \cdot \bmat{0 \\ 1 \\ 1}
+    = -1$$
+
+    \item
+    $$\Phi_{\bvec{F}}(P_{\bpnt{x}}(\bvec{v}_1, \bvec{v}_2))
+    = 0$$
+
+    \item
+    $$M_f(P_{\bpnt{x}}(\bvec{v}_1, \bvec{v}_2, \bvec{v}_3))
+    = -2 \det \bmat{0 & 1 & -1 \\ 1 & 1 & 1 \\ 1 & 0 & 1} = -2$$
+  \end{enumerate}
+\end{problem}
+
+% 6.5.17
+\begin{problem}{9}
+  Four parametrizations can be used for each side of the rectangle:
+  \begin{align*}
+    \gamma_1(t) &= \pmat{0 \\ t},\quad 0 \leq t \leq a \\
+    \gamma_2(t) &= \pmat{t \\ a},\quad 0 \leq t \leq a \\
+    \gamma_3(t) &= \pmat{b \\ t},\quad 0 \leq t \leq a \\
+    \gamma_4(t) &= \pmat{t \\ 0},\quad 0 \leq t \leq a \\
+  \end{align*}
+  The later two parametrizations reverse the orientation.
+  Integrate them:
+  \begin{align*}
+    \int_0^a \bmat{0 \\ t} \cdot \bmat{0 \\ 1} dt     &= \dfrac{a^2}{2} \\
+    \int_0^b \bmat{ta \\ ae^t} \cdot \bmat{1 \\ 0} dt &= \dfrac{ab^2}{2} \\
+    \int_a^0 \bmat{bt \\ te^b} \cdot \bmat{0 \\ 1} dt &= -\dfrac{a^2e^b}{2} \\
+    \int_b^0 \bmat{0 \\ 0} \cdot \bmat{1 \\ 0} dt     &= 0 \\
+  \end{align*}
+  The sum is
+  $$\dfrac{a^2}{2} + \dfrac{ab^2}{2} - \dfrac{a^2e^b}{2}$$
+\end{problem}
+
+% 6.5.18
+\begin{problem}{10}
+  \begin{align*}
+    \int_{\gamma(U)} W_{\bvec{F}} &=
+    \int_0^\alpha
+      (x^2\ dx + y^2\ dy + z^2\ dz) \left(
+        P_{\pmat{\cos t \\ \sin t \\ at}}
+          \bmat{-\sin t \\ \cos t \\ a}
+      \right) dt \\ &=
+    \int_0^\alpha (- \cos^2 t\sin t
+                   + \sin^2 t\cos t
+                   + a^3 t^2) dt \\ &=
+    \dfrac{1}{3} (a^3\alpha^3 + \sin^3 a + \cos^3 a - 1)
+  \end{align*}
+\end{problem}
+
+% 6.5.20
+\begin{problem}{11}
+  Let $\gamma: U \to \mathbb{R}^3$ be
+  $$\gamma \pmat{\theta \\ r} = \pmat{r\cos\theta \\ r\sin\theta \\ r}$$
+  , where $U = [0, 2\pi] \times [0, 1]$.
+  Pick
+  $$\bvec{n} \pmat{\theta \\ r} = \pmat{r\cos\theta \\ r\sin\theta \\ -r}$$
+  which is an outward normal vector field, it is easy to check that $\gamma$ is
+  orientation-preserving: the determinant evaluates to $(1+r)r^2$, which is
+  positive for all $r \in [0, 1]$.
+  \begin{align*}
+    \int_{\gamma{U}} \Phi_{\bvec{F}} &=
+    \int_U (x\ dy \land dz - y\ dx \land dz + z\ dx \land dy) \left(
+      P_{\pmat{r\cos\theta \\ -r\sin\theta \\ r^2\cos\theta\sin\theta}}
+        \left(
+          \bmat{-r\sin\theta \\ r\cos\theta \\ 0},
+          \bmat{  \cos\theta \\ \sin\theta  \\ 1}
+        \right)
+      \right) |d\theta\ dr| \\ &=
+    \int_0^{2\pi} \left(
+      \int_0^1 (\cos^2\theta - \sin^2\theta - \cos\theta\sin\theta)r^2\ dr
+    \right) d\theta \\ &=
+    \dfrac{1}{3} \int_0^{2\pi}
+      (\cos^2\theta - \sin^2\theta - \cos\theta\sin\theta) d\theta \\ &=
+    0
+  \end{align*}
+  Since the result is $0$, it is unnecessary to check orientation.
+\end{problem}
+
+\end{document}
