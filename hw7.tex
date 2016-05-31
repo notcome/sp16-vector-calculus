@@ -1,0 +1,238 @@
+\documentclass{homework}
+
+\title{Homework 7}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\rediv}{div}
+\renewcommand\div{\rediv}
+\allowdisplaybreaks
+
+\begin{document}
+\maketitle
+
+% 6.6.5 (skip part b)
+\begin{problem}{1}
+  \begin{enumerate}
+    \item
+      For any $\bpnt{x} \in P$,
+      $$\bvec{v} = \bmat{1 \\ 0 \\ -1}, \bvec{w} = \bmat{0\\ 1 \\ -1}$$
+      constitute a basis for $T_{\bpnt{x}}P$.
+      \begin{align*}
+        &\sgn \det[\vec{N}, \bvec{v}, \bvec{w}] = \sgn 3 = 1 \\
+        &\sgn dx \land dy (\bvec{v}, \bvec{w}) = 1 \\
+        &\sgn dx \land dz (\bvec{v}, \bvec{w}) = -1 \\
+        &\sgn dy \land dz (\bvec{v}, \bvec{w}) = 1 \\
+      \end{align*}
+      Therefore, $\sgn dx \land dy$ and $\sgn dy \land dz$ gives the same
+      orientation of $P$ as $\vec{N}$.
+    \item
+      It is sufficient to check whether $\gamma$ is orientation preserving.
+      Since
+      $$\det[\vec{N}, \bvec{v}_{\mathrm{out}(t)}, \gamma'(t)] =
+        \det[\vec{N}, \gamma(t), \gamma'(t)] = -\sqrt{3}$$
+      $\gamma$ is orientation reversing, which makes it incompatible with the
+      boundary orientation of $\partial X$.
+    \item
+      First, check whether the signs of the three forms acting on $\gamma'$ are
+      continuous:
+      \begin{align*}
+        &dx(P_{\gamma(t)} \gamma'(t))
+          = -\dfrac{\sin t}{\sqrt{2}} -\dfrac{\cos t}{\sqrt{6}} \\
+        &dy(P_{\gamma(t)} \gamma'(t))
+          =  \dfrac{\sin t}{\sqrt{2}} -\dfrac{\cos t}{\sqrt{6}} \\
+        &dz(P_{\gamma(t)} \gamma'(t))
+          = 2\dfrac{\cos t}{\sqrt{6}}
+      \end{align*}
+      None of them does not change signs within $0 \leq t \leq 2\pi$, hence they
+      cannot define the orientation at every point.
+    \item
+    \begin{align*}
+      &x\ dy - y\ dx (P_{\gamma(t)} \gamma'(t)) = -1/\sqrt{3} \\
+      &x\ dz - z\ dx (P_{\gamma(t)} \gamma'(t)) =  1/\sqrt{3} \\
+      &y\ dz - z\ dy (P_{\gamma(t)} \gamma'(t)) = -1/\sqrt{3}
+    \end{align*}
+    Since the parametrization is orientation reversing, only forms that
+    give a negative the result, namely the first and the third one,
+    define the boundary orientation.
+  \end{enumerate}
+\end{problem}
+
+% 6.7.3
+\begin{problem}{2}
+  \begin{enumerate}
+    \item
+      Let $\vec{F}_2 = \pmat{F_1 \\ F_2}$.
+      \begin{align*}
+        \mathbf{d}\Phi_{\vec{F}_2} &=
+        \mathbf{d}(-F_2\ dx + F_1 dy) \\ &=
+        \mathbf{d}\left( \dfrac{-y}{x^2+y^2} dx \right) +
+        \mathbf{d}\left( \dfrac{x}{x^2+y^2} dx \right) \\ &=
+        \dfrac
+          {(y^2-x^2)dy \land dx + (x^2 + y^2 - 2x^2)dx \land dy}
+          {(x^2+y^2)^2} \\ &= 0
+      \end{align*}
+    \item
+      Let $\vec{F}_3 = \pmat{F_1 \\ F_2 \\ F_3}$.
+      \begin{align*}
+        \mathbf{d}\Phi_{\vec{F}_3} &=
+        \mathbf{d}(F_1\ dy \land dz - F_2\ dx \land dz + F_3 dx \land dy) \\ &=
+        \dfrac
+          {(x^2+y^2+z^2)^{3/2} - 3x^2(x^2+y^2+z^2)^{3/2}}
+          {(x^2+y^2+z^2)^3} dx \land dy \land dz \\ &-
+        \dfrac
+          {(x^2+y^2+z^2)^{3/2} - 3y^2(x^2+y^2+z^2)^{3/2}}
+          {(x^2+y^2+z^2)^3} dy \land dx \land dz \\ &+
+        \dfrac
+          {(x^2+y^2+z^2)^{3/2} - 3z^2(x^2+y^2+z^2)^{3/2}}
+          {(x^2+y^2+z^2)^3} dz \land dx \land dy \\ &=
+        \dfrac
+          {3(x^2+y^2+z^2)^{3/2} - 3(x^2+y^2+z^2)^{3/2}}
+          {(x^2+y^2+z^2)^3} \\ &= 0
+      \end{align*}
+  \end{enumerate}
+\end{problem}
+
+% 6.7.4
+\begin{problem}{3}
+  $$\mathbf{d}\varphi
+  = 2x_1x_3\ dx_1 \land dx_2 \land dx_3
+  - x_1\ dx_1 \land dx_3 \land dx_4
+  $$
+\end{problem}
+
+% 6.7.6
+\begin{problem}{4}
+  \begin{enumerate}
+    \item
+      $\mathbf{d}(f\ dx \land dz) = -(D_2f)\ dx \land dy \land dz$
+    \item
+      $\mathbf{d}(f\ dy \land dz) = (D_1f)\ dx \land dy \land dz$
+  \end{enumerate}
+\end{problem}
+
+% 6.7.9
+\begin{problem}{5}
+  To satisfy the equation, we have
+  \begin{flalign*}
+    &&D_3q(x, z) = -x &&\\
+    &&D_3p(y, z) = -y &&\\
+    &&D_1q(x, z) = D_2p(y, z) && \text{to cancel } dx \land dy
+  \end{flalign*}
+  Therefore, $\omega$ is of the form
+  $$\omega = -(yz + k_1)\ dx - (xz + k_2)\ dy$$
+\end{problem}
+
+% 6.7.11
+\begin{problem}{6}
+  \newcommand \ED{\mathbf{d}}
+  \begin{enumerate}
+    \item
+      It follows immediately from the product rule.
+    \item
+      Assume that we have a $k$-form $\varphi_0$ and a $l$-form $\psi_0$.
+      $\varphi_0$ can be written as the sum of $\varphi_1 + \varphi_2$ where
+      both forms are of the form of $\varphi$ stated in the problem. The same
+      holds true for $\psi_0$.
+
+      Next, it is sufficient to show that the theorem works for
+      $\varphi_0 \land \psi_0$ if it works for
+      $\varphi_1, \varphi_2, \psi_1, \psi_2$:
+      \begin{align*}
+        \ED((\varphi_1 + \varphi_2) \land (\psi_1 + \psi_2)) &=
+        \ED(\varphi_1 \land \psi_1) + \ED(\varphi_1 \land \psi_2) +
+        \ED(\varphi_2 \land \psi_1) + \ED(\varphi_2 \land \psi_2) \\ &=
+        \ED\varphi_1 \land \psi_1 + (-1)^k\varphi_1 \land \ED\psi_1 \\ &+
+        \ED\varphi_1 \land \psi_1 + (-1)^k\varphi_1 \land \ED\psi_2 \\ &+
+        \ED\varphi_1 \land \psi_2 + (-1)^k\varphi_1 \land \ED\psi_1 \\ &+
+        \ED\varphi_1 \land \psi_2 + (-1)^k\varphi_1 \land \ED\psi_2 \\ &=
+        (\ED \varphi_1 + \ED \varphi_2) \land (\psi_1 + \psi_2) +
+        (-1)^k (\varphi_1 \land \ED(\psi_1 + \psi_2) +
+                \varphi_2 \land \ED(\psi_1 + \psi_2)) \\ &=
+        \ED(\varphi_1 + \varphi_2) \land (\psi_1 + \psi_2) +
+        (-1)^k (\varphi_1 + \varphi_2) \land \ED(\psi_1 + \psi_2)
+      \end{align*}
+    \item
+      Let $a = a(\bpnt(x)), b = b(\bpnt{x})$.
+      \begin{align*}
+        \ED(\varphi \land \psi) &=
+        \ED(ab) \land dx_{i_1} \land \hdots \land dx_{i_k}
+                \land dx_{j_1} \land \hdots \land dx_{j_l} \\ &=
+        a \ED b
+          \land dx_{i_1} \land \hdots \land dx_{i_k}
+          \land dx_{j_1} \land \hdots \land dx_{j_l} \\ &+
+        b \ED a
+          \land dx_{i_1} \land \hdots \land dx_{i_k}
+          \land dx_{j_1} \land \hdots \land dx_{j_l} \\ &=
+        a dx_{i_1} \land \hdots \land dx_{i_k} \land
+        (-1)^k\ED b dx_{j_1} \land \hdots \land dx_{j_l} \\ &+
+        \ED \varphi \land
+        b dx_{j_1} \land \hdots \land dx_{j_l} \\ &=
+        \ED \varphi \land \psi +
+        (-1)^k \varphi \land \ED \psi
+      \end{align*}
+  \end{enumerate}
+\end{problem}
+
+% 6.8.6
+\begin{problem}{7}
+  \begin{enumerate}
+    \item
+      $$\vec{F}\pmat{x \\ y \\ z} = \pmat{x \\ -xy \\ xy}$$
+    \item
+      \newcommand \ED{\mathbf{d}}
+      \begin{align*}
+        \ED \Phi_{\vec{F}} &= dx \land dy \land dz + y\ dy \land dx \land dz \\
+                           &= (1-x) dx \land dy \land dz
+      \end{align*}
+      \begin{align*}
+        M_{\div\vec{F}} &=
+        \vec{\nabla} \cdot \vec{F}\ dx \land dy \land dz \\ &=
+        (D_1F_1 + D_2F_2 + D_3F_3) dx \land dy \land dz \\ &=
+        (1 - x + 0) dx \land dy \land dz \\ &= \ED \Phi_{\vec{F}}
+      \end{align*}
+  \end{enumerate}
+\end{problem}
+
+% 6.8.11 (part a only)
+\begin{problem}{8}
+  \begin{align*}
+    \div \bmat{x^2-y \\ -2yz \\ x^3y^2} = 2xy - 2z
+  \end{align*}
+  \begin{align*}
+    \div \bmat{\sin{xz} \\ \cos{yz} \\ xyz} = z\cos{xz}-z\sin{yz}+xy
+  \end{align*}
+  \begin{align*}
+    \curl \bmat{x^2-y \\ -2yz \\ x^3y^2} &=
+    \bmat{D_1 \\ D_2 \\ D_3} \times \bmat{x^2-y \\ -2yz \\ x^3y^2} \\ &=
+    \bmat{2x^3+y+2y \\ -3x^2y^2 \\ -x^2}
+  \end{align*}
+  \begin{align*}
+    \curl \bmat{\sin{xz} \\ \cos{yz} \\ xyz} &=
+    \bmat{D_1 \\ D_2 \\ D_3} \times \bmat{\sin{xz} \\ \cos{yz} \\ xyz} \\ &=
+    \bmat{xz + y\sin{yz} \\ x\cos{xz} - yz \\0}
+  \end{align*}
+
+\end{problem}
+
+% 6.8.12
+\begin{problem}{9}
+  \begin{align*}
+    \grad \div \bvec{F} - \curl \curl \bvec{F} &=
+    \bmat{
+      D_1D_1F_1 + D_1D_2F_2 + D_1D_3F_3 \\
+      D_2D_1F_1 + D_2D_2F_2 + D_2D_3F_3 \\
+      D_3D_1F_1 + D_3D_2F_2 + D_3D_3F_3
+    } \\ &-
+    \bmat{
+      D_2D_1F_2 - D_2D_2F_1 - D_3D_3F_1 + D_3D_1F_3 \\
+      D_3D_2F_3 - D_3D_3F_2 - D_1D_1F_2 + D_1D_2F_1 \\
+      D_1D_3F_1 - D_1D_1F_3 - D_2D_2F_3 + D_2D_3F_2
+    } \\ &=
+    (D_1^2 + D_2^2 + D_3^2)\bmat{F_1 \\ F_2 \\ F_3} \\ &=
+    \bmat{\Delta F_1 \\ \Delta F_2 \\ \Delta F_3}
+  \end{align*}
+\end{problem}
+
+\end{document}
